@@ -51,13 +51,13 @@ and animation, or build a graph from scratch. Save custom presets for reuse.
 | **Prepare final textures**     | Resize, generate or replace mip levels, encode textures, and compare the decoded result with the original.                                                                        |
 | **Work with Dreamcast assets** | Use the bundled native PVR encoder, palette formats, VQ compression, mipmaps, and FDV material bundles.                                                                           |
 
-### See how the surface is built
+### Interactive Node Graph
 
 <img src="docs/media/acid-node-graph.gif" width="1280" alt="Acid bubbles node graph with animated thumbnails for pigment, normals, highlights and material output">
 
 _Acid bubbles: animated node previews._
 
-### See the material as you work
+### Preview materials in 3D views
 
 <img src="docs/media/material-preview.png" width="1280" alt="Wet mud in the 3D material preview">
 
@@ -66,7 +66,7 @@ check seams with tiling, or orbit the preview mesh to judge its appearance.
 Wet and polished presets include controls for baked highlights and FDV environment
 reflections.
 
-### Put your textures in motion
+### Animate textures and export into sprite sheets
 
 Create looping lava, magma, water, rain, fire, smoke, sparks, energy shields,
 plasma arcs, and more. The animation controls let you set frame count, FPS,
