@@ -73,9 +73,6 @@ Create looping lava, magma, water, rain, fire, smoke, sparks, energy shields,
 plasma arcs, and more. The animation controls let you set frame count, FPS,
 sheet columns, and preview speed. Export a single frame or an entire sprite sheet.
 
-**Lava flow** preserves the static Lava preset's crust and narrow cracks.
-**Magma flow** exposes broader molten currents moving around stationary rock islands.
-
 ### From modern image files to Dreamcast textures
 
 | Workflow               | Formats and tools                                                                                                                                                                   |
