@@ -35,8 +35,9 @@ A native desktop workspace for Windows and Linux.
 ## Materials and effects
 
 Choose from 94 presets covering stone, gravel, mud, wood, metal, fabric, glass,
-water, fire, smoke, and energy effects. Adjust the seed, colors, surface detail,
-and animation, or build a graph from scratch. Save custom presets for reuse.
+water, fire, smoke, and energy effects.  
+Adjust the seed, colors, surface detail, and animation, or build a graph from scratch.  
+Save custom presets for reuse.
 
 ## Built for the whole texture workflow
 
@@ -89,18 +90,6 @@ sheet columns, and preview speed. Export a single frame or an entire sprite shee
 ## Download
 
 **Get the application from [GitHub Releases](https://github.com/freakdave/FDV-Texture-Studio/releases).**
-Open a release and choose one of its assets:
-
-| Platform         | Package                                             | Best for                                                              |
-| :--------------- | :-------------------------------------------------- | :-------------------------------------------------------------------- |
-| **Windows x64**  | `FDV-Texture-Studio-0.1.0-Windows-x64-Setup.exe`    | A per-user install with an uninstaller and optional desktop shortcut. |
-| **Windows x64**  | `FDV-Texture-Studio-0.1.0-Windows-x64-portable.zip` | Extract and run `fdv-texture-studio.exe`.                             |
-| **Linux x86-64** | `fdv-texture-studio_0.1.0_amd64.deb`                | Install on a compatible Debian/Ubuntu system.                         |
-| **Linux x86-64** | `fdv-texture-studio-0.1.0-linux-x86_64.zip`         | Extract and run `launch-texture-studio.sh`.                           |
-
-Each release includes `SHA256SUMS` for verifying the downloads. Choose a named
-application package from **Assets**; GitHub's automatic “Source code” archives
-contain this showcase repository, not the application.
 
 **Requirements:** a 64-bit Windows or Linux desktop and a working OpenGL 3.3
 graphics driver. The current Linux packages require glibc 2.38 or newer and
@@ -120,12 +109,13 @@ conversion, and material export.
 ## About this repository
 
 This is the public showcase, documentation, and binary release home for
-**FDV Texture Studio**. The application's source code is not published here.
+**FDV Texture Studio**.  
+The application's source code is not published here.
 
 Third-party components retain their respective licenses. Release packages include
 their notices and the corresponding source for the separately bundled PVR encoder.
 That encoder source is separate from the private FDV Texture Studio application.
 
 Found a problem or have an idea? **[Open an issue](https://github.com/freakdave/FDV-Texture-Studio/issues)**
-with your app version, operating system, and steps to reproduce it. A screenshot
-or a small example graph is helpful.
+with your app version, operating system, and steps to reproduce it.  
+A screenshot or a small example graph is helpful.
