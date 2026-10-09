@@ -4,8 +4,6 @@
 
 # FDV Texture Studio
 
-### From a node graph to your next game texture.
-
 **Procedural materials · Animated effects · Dreamcast texture tools**
 
 Create textures, inspect them in 3D, and export them for your game.<br>
@@ -17,27 +15,28 @@ A native desktop workspace for Windows and Linux.
 
 **94 presets** &nbsp; / &nbsp; **78 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
 
-<img src="docs/media/material-collage.svg" width="1280" alt="Material collage: Wet mud, Forest floor, Lava, Wet cobblestone, Rusted steel and Denim, rendered in FDV Texture Studio">
-
-*Actual preset renders. Editable graphs, colors, surface detail, and material settings.*
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="docs/media/lava-flow.gif" width="300" alt="Molten lava moving through dark basalt cracks"><br><b>Lava flow</b></td>
+    <td align="center" width="25%"><img src="docs/media/wet-gravel.jpg" width="300" alt="Wet gravel with varied stones and reflective highlights"><br><b>Wet gravel</b></td>
+    <td align="center" width="25%"><img src="docs/media/wet-mud.jpg" width="300" alt="Dark wet mud with glossy ridges"><br><b>Wet mud</b></td>
+    <td align="center" width="25%"><img src="docs/media/acid-bubbles.gif" width="300" alt="Animated green acid with expanding bubbles"><br><b>Acid bubbles</b></td>
+  </tr>
+  <tr>
+    <td align="center" width="25%"><img src="docs/media/billowing-smoke.gif" width="300" alt="Animated billowing smoke"><br><b>Billowing smoke</b></td>
+    <td align="center" width="25%"><img src="docs/media/fire-plume.gif" width="300" alt="Rising animated flames"><br><b>Fire plume</b></td>
+    <td align="center" width="25%"><img src="docs/media/plasma-arcs.gif" width="300" alt="Animated electrical plasma filaments"><br><b>Plasma arcs</b></td>
+    <td align="center" width="25%"><img src="docs/media/water-caustics.gif" width="300" alt="Moving underwater light patterns"><br><b>Water caustics</b></td>
+  </tr>
+</table>
 
 </div>
 
-## Make it yours
+## Materials and effects
 
-Start with a material or effect from the searchable preset library. Change its
-seed, colors, surface detail, or animation; then follow the graph as far as your
-idea takes you. Save your own presets and return to them whenever you need a new
-variation.
-
-The screenshots and texture samples below come from FDV Texture Studio itself.
-The materials are procedural, editable starting points, not photographic scans.
-
-## A library of surfaces
-
-Explore masonry, stone, concrete, terrain, sand, foliage, wood, metal, fabric,
-leather, rubber, glass, water, and wet or polished surfaces—alongside animated
-weather, fire, and energy effects.
+Choose from 94 presets covering stone, gravel, mud, wood, metal, fabric, glass,
+water, fire, smoke, and energy effects. Adjust the seed, colors, surface detail,
+and animation, or build a graph from scratch. Save custom presets for reuse.
 
 ## Built for the whole texture workflow
 
@@ -54,9 +53,9 @@ weather, fire, and energy effects.
 
 ### See how the surface is built
 
-<img src="docs/media/node-graph.png" width="1280" alt="Dedicated Wet mud node graph showing category colors, texture thumbnails, labeled nodes and connections">
+<img src="docs/media/acid-node-graph.gif" width="1280" alt="Acid bubbles node graph with animated thumbnails for pigment, normals, highlights and material output">
 
-*The Wet mud graph, shown separately at a readable scale. Each node remains editable.*
+*Acid bubbles — animated node previews.*
 
 ### See the material as you work
 
@@ -69,11 +68,6 @@ reflections.
 
 ### Put your textures in motion
 
-<div align="center">
-<img src="docs/media/lava-flow.gif" width="384" alt="Animated Lava flow: molten detail moves inside narrow glowing cracks while the basalt crust stays still">
-
-_Lava flow: stationary basalt, moving molten detail inside the cracks._
-</div>
 
 Create looping lava, magma, water, rain, fire, smoke, sparks, energy shields,
 plasma arcs, and more. The animation controls let you set frame count, FPS,
