@@ -17,9 +17,9 @@ A native desktop workspace for Windows and Linux.
 
 **94 presets** &nbsp; / &nbsp; **78 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
 
-<img src="docs/media/workspace.png" width="1280" alt="FDV Texture Studio showing Wet cobblestone on a 3D sphere, editable settings and nodes colored by category">
+<img src="docs/media/material-collage.svg" width="1280" alt="Material collage: Wet mud, Forest floor, Lava, Wet cobblestone, Rusted steel and Denim, rendered in FDV Texture Studio">
 
-_A live material preview, editable parameters, and the graph behind the surface—all in one workspace._
+*Actual preset renders. Editable graphs, colors, surface detail, and material settings.*
 
 </div>
 
@@ -34,19 +34,6 @@ The screenshots and texture samples below come from FDV Texture Studio itself.
 The materials are procedural, editable starting points, not photographic scans.
 
 ## A library of surfaces
-
-<table>
-  <tr>
-    <td align="center" width="33%"><img src="docs/media/forest-floor.jpg" width="320" alt="Forest floor with leaf litter, twigs and dark soil"><br><b>Forest floor</b><br>Layered litter and organic detail</td>
-    <td align="center" width="33%"><img src="docs/media/wet-cobblestone.jpg" width="320" alt="Wet cobblestone with irregular stones and dark joints"><br><b>Wet cobblestone</b><br>Stone, joints and wet highlights</td>
-    <td align="center" width="33%"><img src="docs/media/rusted-steel.jpg" width="320" alt="Rusted steel with contrasting metal and corrosion"><br><b>Rusted steel</b><br>Metal and uneven corrosion</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/media/lacquered-walnut.jpg" width="320" alt="Lacquered walnut showing wood grain"><br><b>Lacquered walnut</b><br>Grain, color and polished finish</td>
-    <td align="center"><img src="docs/media/denim.jpg" width="320" alt="Blue denim with directional woven yarns"><br><b>Denim</b><br>Woven structure and yarn variation</td>
-    <td align="center"><img src="docs/media/lava.jpg" width="320" alt="Dark basalt crust with glowing orange lava cracks"><br><b>Lava</b><br>Cooled crust and incandescent seams</td>
-  </tr>
-</table>
 
 Explore masonry, stone, concrete, terrain, sand, foliage, wood, metal, fabric,
 leather, rubber, glass, water, and wet or polished surfaces—alongside animated
@@ -65,9 +52,15 @@ weather, fire, and energy effects.
 | **Prepare final textures**     | Resize, generate or replace mip levels, encode textures, and compare the decoded result with the original.                                                                        |
 | **Work with Dreamcast assets** | Use the bundled native PVR encoder, palette formats, VQ compression, mipmaps, and FDV material bundles.                                                                           |
 
+### See how the surface is built
+
+<img src="docs/media/node-graph.png" width="1280" alt="Dedicated Wet mud node graph showing category colors, texture thumbnails, labeled nodes and connections">
+
+*The Wet mud graph, shown separately at a readable scale. Each node remains editable.*
+
 ### See the material as you work
 
-<img src="docs/media/material-preview.png" width="1280" alt="Lacquered walnut on the cube preview alongside its editable node graph">
+<img src="docs/media/material-preview.png" width="1280" alt="Wet mud in the 3D material preview">
 
 The texture and 3D views share the same material settings. Inspect a flat image,
 check seams with tiling, or orbit the preview mesh to judge its appearance.
