@@ -6,14 +6,11 @@
 
 **Procedural materials · Animated effects · Dreamcast texture tools**
 
-Create textures, inspect them in 3D, and export them for your game.<br>
-A native desktop workspace for Windows and Linux.
+Create textures, inspect them in 3D, and export them for your game.<br> A native desktop workspace for Windows and Linux.
 
-**[Download from Releases](https://github.com/freakdave/FDV-Texture-Studio/releases)** &nbsp; · &nbsp;
-**[Explore the features](#built-for-the-whole-texture-workflow)** &nbsp; · &nbsp;
-**[User guide](docs/USER_GUIDE.md)**
+**[Download from Releases](https://github.com/freakdave/FDV-Texture-Studio/releases)** &nbsp; · &nbsp; **[Explore the features](#built-for-the-whole-texture-workflow)** &nbsp; · &nbsp; **[User guide](docs/USER_GUIDE.md)**
 
-**94 presets** &nbsp; / &nbsp; **78 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
+**94 presets** &nbsp; / &nbsp; **79 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
 
 <table width="100%">
   <tr>
@@ -34,23 +31,20 @@ A native desktop workspace for Windows and Linux.
 
 ## Materials and effects
 
-Choose from 94 presets covering stone, gravel, mud, wood, metal, fabric, glass,
-water, fire, smoke, and energy effects.  
-Adjust the seed, colors, surface detail, and animation, or build a graph from scratch.  
+Choose from 94 presets covering stone, gravel, mud, wood, metal, fabric, glass, water, fire, smoke, and energy effects.<br>
+Adjust the seed, colors, surface detail, and animation, or build a graph from scratch.<br>
 Save custom presets for reuse.
 
 ## Built for the whole texture workflow
 
-|                                | What you can do                                                                                                                                                                   |
-| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Build visually**             | Connect 78 node types: generators, surface patterns, math, masks, color, filters, normals, coordinates, textures, and animation. Dark category colors make graphs easier to read. |
-| **Work with detail**           | Generate textures from 32 × 32 up to 4096 × 4096. Inspect available material, albedo, height, and normal outputs.                                                                 |
-| **Preview in context**         | Orbit a sphere, cube, or plane. Inspect 2 × 2 tiling, transparency, reflections, and material motion.                                                                             |
-| **Keep editing comfortably**   | Use background node thumbnails, searchable nodes and presets, comment groups, Undo/Redo, and individual setting resets.                                                           |
-| **Mix your own ingredients**   | Import images, sample another preset, combine layers with masks, and save reusable custom presets.                                                                                |
-| **Animate and export**         | Preview loops, scrub frames, and export sprite sheets with frame rectangles, FPS, and duration in a JSON sidecar.                                                                 |
-| **Prepare final textures**     | Resize, generate or replace mip levels, encode textures, and compare the decoded result with the original.                                                                        |
-| **Work with Dreamcast assets** | Use the bundled native PVR encoder, palette formats, VQ compression, mipmaps, and FDV material bundles.                                                                           |
+| Feature | What you can do |
+| :--- | :--- |
+| **Node editor** | Build with 79 node types, animated thumbnails, and colored categories. |
+| **Materials** | Generate up to 4096 × 4096 with material, albedo, height, and normal outputs. |
+| **3D preview** | Inspect a sphere, cube, or plane with tiling and environment reflections. |
+| **Animation** | Preview loops and export sprite sheets with frame and timing metadata. |
+| **Reusable graphs** | Import images, copy nodes between graphs, and save presets or node groups. |
+| **Dreamcast tools** | Encode textures with palettes, VQ compression, and mipmaps, then compare the result. |
 
 ### Interactive Node Graph
 
@@ -62,57 +56,44 @@ _Acid bubbles: animated node previews._
 
 <img src="docs/media/material-preview.png" width="1280" alt="Wet mud in the 3D material preview">
 
-The texture and 3D views share the same material settings. Inspect a flat image,
-check seams with tiling, or orbit the preview mesh to judge its appearance.
-Wet and polished presets include controls for baked highlights and FDV environment
-reflections.
+Switch between the texture and 3D views to check seams, surface detail, and reflections.
 
-### Animate textures and export into sprite sheets
+Export PNG or JPEG images, animated sprite sheets, Dreamcast textures, or FDV material bundles.<br>
+Save a `.fdvgraph` to keep your work editable.
 
-Create looping lava, magma, water, rain, fire, smoke, sparks, energy shields,
-plasma arcs, and more. The animation controls let you set frame count, FPS,
-sheet columns, and preview speed. Export a single frame or an entire sprite sheet.
-
-### From modern image files to Dreamcast textures
-
-| Workflow               | Formats and tools                                                                                                                                                                   |
-| :--------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Images**             | Import and export PNG and JPEG.                                                                                                                                                     |
-| **Dreamcast textures** | DTEX / TEX, DT, and PVR containers; PAL palette files. Encoding options include RGB565, ARGB1555, ARGB4444, YUV422, PAL4, PAL8, BUMP, and NORMAL, subject to container constraints. |
-| **Animation**          | Sprite-sheet export with a `.sprites.json` sidecar; PNG supports transparency.                                                                                                      |
-| **Editable graphs**    | Save and reopen `.fdvgraph` documents, including animation and material settings.                                                                                                   |
-| **FDV materials**      | Export a portable `.fdvmat` bundle with textures, optional Dreamcast DTEX files, and the creator graph.                                                                             |
-| **Quality checks**     | Side-by-side, wipe, and amplified difference views of the source and actual encoded texture.                                                                                        |
+See the [user guide](docs/USER_GUIDE.md) for export formats and settings.
 
 ## Download
 
 **Get the application from [GitHub Releases](https://github.com/freakdave/FDV-Texture-Studio/releases).**
 
-**Requirements:** a 64-bit Windows or Linux desktop and a working OpenGL 3.3
-graphics driver. The current Linux packages require glibc 2.38 or newer and
-X11 or XWayland. The native PVR encoder is included; KOS and WSL are not needed
-to run the release packages.
+| Platform | Installation options |
+| :--- | :--- |
+| **Windows** | Setup installer or portable ZIP. |
+| **Linux** | DEB package or portable ZIP. |
+
+**Requirements:** a 64-bit Windows or Linux desktop and a working OpenGL 3.3 graphics driver.<br>
+The current Linux packages require glibc 2.38 or newer and X11 or XWayland.<br>
+The native PVR encoder is included.<br>
+KOS and WSL are not needed to run the release packages.
 
 ## Your first texture
 
-1. **Choose a preset** in GPU Creator. Pick a resolution and seed.
+1. **Choose a preset** in GPU Creator.<br>Pick a resolution and seed.
 2. **Make it your own.** Select nodes to edit colors, shapes, surface detail, or animation.
-3. **Inspect the result.** Switch between Texture and 3D material; enable 2 × 2 tiling to check repeats.
-4. **Export.** Save an image, export a sprite sheet, or use the converter for Dreamcast encoding. Save the graph to keep it editable.
+3. **Inspect the result.** Switch between Texture and 3D material.<br>Enable 2 × 2 tiling to check repeats.
+4. **Export.** Save an image, export a sprite sheet, or use the converter for Dreamcast encoding.<br>Save the graph to keep it editable.
 
-See the **[user guide](docs/USER_GUIDE.md)** for graph controls, animation,
-conversion, and material export.
+See the **[user guide](docs/USER_GUIDE.md)** for graph controls, animation, conversion, and material export.
 
 ## About this repository
 
-This is the public showcase, documentation, and binary release home for
-**FDV Texture Studio**.  
+This is the public showcase, documentation, and binary release home for **FDV Texture Studio**.<br>
 The application's source code is not published here.
 
-Third-party components retain their respective licenses. Release packages include
-their notices and the corresponding source for the separately bundled PVR encoder.
+Third-party components retain their respective licenses.<br>
+Release packages include their notices and the corresponding source for the separately bundled PVR encoder.<br>
 That encoder source is separate from the private FDV Texture Studio application.
 
-Found a problem or have an idea? **[Open an issue](https://github.com/freakdave/FDV-Texture-Studio/issues)**
-with your app version, operating system, and steps to reproduce it.  
+Found a problem or have an idea? **[Open an issue](https://github.com/freakdave/FDV-Texture-Studio/issues)** with your app version, operating system, and steps to reproduce it.<br>
 A screenshot or a small example graph is helpful.
