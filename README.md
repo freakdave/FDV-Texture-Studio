@@ -55,7 +55,7 @@ and animation, or build a graph from scratch. Save custom presets for reuse.
 
 <img src="docs/media/acid-node-graph.gif" width="1280" alt="Acid bubbles node graph with animated thumbnails for pigment, normals, highlights and material output">
 
-_Acid bubbles — animated node previews._
+_Acid bubbles: animated node previews._
 
 ### See the material as you work
 
