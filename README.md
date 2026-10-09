@@ -15,18 +15,18 @@ A native desktop workspace for Windows and Linux.
 
 **94 presets** &nbsp; / &nbsp; **78 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
 
-<table>
+<table width="100%">
   <tr>
-    <td align="center" width="25%"><img src="docs/media/lava-flow.gif" width="300" alt="Molten lava moving through dark basalt cracks"><br><b>Lava flow</b></td>
-    <td align="center" width="25%"><img src="docs/media/wet-gravel.jpg" width="300" alt="Wet gravel with varied stones and reflective highlights"><br><b>Wet gravel</b></td>
-    <td align="center" width="25%"><img src="docs/media/wet-mud.jpg" width="300" alt="Dark wet mud with glossy ridges"><br><b>Wet mud</b></td>
-    <td align="center" width="25%"><img src="docs/media/acid-bubbles.gif" width="300" alt="Animated green acid with expanding bubbles"><br><b>Acid bubbles</b></td>
+    <td align="center" width="25%"><img src="docs/media/lava-flow.gif" width="100%" alt="Molten lava moving through dark basalt cracks"><br><b>Lava flow</b></td>
+    <td align="center" width="25%"><img src="docs/media/wet-gravel.jpg" width="100%" alt="Wet gravel with varied stones and reflective highlights"><br><b>Wet gravel</b></td>
+    <td align="center" width="25%"><img src="docs/media/wet-mud.jpg" width="100%" alt="Dark wet mud with glossy ridges"><br><b>Wet mud</b></td>
+    <td align="center" width="25%"><img src="docs/media/acid-bubbles.gif" width="100%" alt="Animated green acid with expanding bubbles"><br><b>Acid bubbles</b></td>
   </tr>
   <tr>
-    <td align="center" width="25%"><img src="docs/media/billowing-smoke.gif" width="300" alt="Animated billowing smoke"><br><b>Billowing smoke</b></td>
-    <td align="center" width="25%"><img src="docs/media/fire-plume.gif" width="300" alt="Rising animated flames"><br><b>Fire plume</b></td>
-    <td align="center" width="25%"><img src="docs/media/plasma-arcs.gif" width="300" alt="Animated electrical plasma filaments"><br><b>Plasma arcs</b></td>
-    <td align="center" width="25%"><img src="docs/media/water-caustics.gif" width="300" alt="Moving underwater light patterns"><br><b>Water caustics</b></td>
+    <td align="center" width="25%"><img src="docs/media/billowing-smoke.gif" width="100%" alt="Animated billowing smoke"><br><b>Billowing smoke</b></td>
+    <td align="center" width="25%"><img src="docs/media/fire-plume.gif" width="100%" alt="Rising animated flames"><br><b>Fire plume</b></td>
+    <td align="center" width="25%"><img src="docs/media/plasma-arcs.gif" width="100%" alt="Animated electrical plasma filaments"><br><b>Plasma arcs</b></td>
+    <td align="center" width="25%"><img src="docs/media/water-caustics.gif" width="100%" alt="Moving underwater light patterns"><br><b>Water caustics</b></td>
   </tr>
 </table>
 
@@ -55,7 +55,7 @@ and animation, or build a graph from scratch. Save custom presets for reuse.
 
 <img src="docs/media/acid-node-graph.gif" width="1280" alt="Acid bubbles node graph with animated thumbnails for pigment, normals, highlights and material output">
 
-*Acid bubbles — animated node previews.*
+_Acid bubbles — animated node previews._
 
 ### See the material as you work
 
@@ -67,7 +67,6 @@ Wet and polished presets include controls for baked highlights and FDV environme
 reflections.
 
 ### Put your textures in motion
-
 
 Create looping lava, magma, water, rain, fire, smoke, sparks, energy shields,
 plasma arcs, and more. The animation controls let you set frame count, FPS,
