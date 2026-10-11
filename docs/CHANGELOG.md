@@ -4,60 +4,60 @@
 
 ### Workspace
 
-- **GPU Creator** is now **Texture Creator**, and **Use in converter** is now **Use in Texture Converter**.
-- Dock, tab, float, and resize the **Controls**, **Node inspector**, **Preview**, **Node graph**, and **FDV material** panels. Close a panel with its **×** and show it again from the new **View** menu. **View > Reset layout** restores the default.
-- Fill the window with the node graph using **Focus graph**, **View > Focus graph**, or **F11**. A 3D material preview sits in the graph's corner, and the node inspector sits in a column beside it.
-- Save up to four named layouts with **View > Layouts > Save layout as...**.
-- Edit FDV material settings in their own panel, by default a full-height column on the right.
-- Use Roboto for the interface font. **Settings** and **Help** moved to the right end of the menu bar.
-- Start with the **New graph** Checker document.
-- Show the **Recover graph** prompt once for each session that ended without a normal close.
-- Show **Export sprite sheet** and the animation controls only when a Time node drives the material output.
+- **GPU Creator** is now called **Texture Creator**. **Use in converter** is now **Use in Texture Converter**.
+- The panels can be docked, tabbed, floated, and resized. Closed panels come back from the new **View** menu. **View > Reset layout** restores the default.
+- **Focus graph** (also **F11**) shows only the node graph, with a small 3D preview in the corner and the node inspector on the right.
+- Save up to four layouts with **View > Layouts > Save layout as...**.
+- The FDV material settings have their own panel on the right.
+- New interface font: Roboto. **Settings** and **Help** are now at the right end of the menu bar.
+- The app starts with an empty **New graph** (a Checker node).
+- The **Recover graph** prompt now appears only once after a crash, not on every start.
+- **Export sprite sheet** and the animation controls only show up for animated graphs.
 
 ### Node editing
 
-- Edit colors with one color picker: a hue wheel, an alpha bar, and RGB, HSV, and hex fields. Pin a whole color.
-- Show the node type in each node's header and the node's own name in its footer, with **OUTPUT** or **BYPASSED** beside it.
-- Assign the graph's Output, Albedo, Height, and Normal maps with **Use this node as** in the node inspector. Each tooltip names the node that supplies the map now.
-- Build graphs of up to 256 nodes. The previous limit was 64.
-- Graphs where a costly height feeds **Relief lighting**, **Normal**, or a filter no longer fail with "GPU evaluation budget".
-- Record one Undo step per drag instead of one per frame.
+- Colors have a proper color picker with a hue wheel, alpha, and RGB, HSV, and hex input. Whole colors can be pinned.
+- Node headers show the node type. The node's own name is in the footer, next to **OUTPUT** or **BYPASSED**.
+- **Use this node as** in the node inspector sets which node is the graph's Output, Albedo, Height, or Normal. The tooltip tells you which node has it now.
+- Graphs can have up to 256 nodes. The old limit was 64.
+- Fixed "GPU evaluation budget" errors when a complex height map feeds **Relief lighting**, **Normal**, or a filter.
+- Dragging a slider now creates one Undo step, not one per frame.
 
 ### Presets
 
-- Add 8 **Sci-fi** presets: Sci-fi panels, Hex armor, Metal compartments, Ribbed siding, Vent grille, Glowing tech panel, Grimy space panels, and Hazard plating. Metal reflects the environment only through chips, scratches, bolts, and rubbed-clean areas. LED strips glow with a slight bloom.
-- Add 8 hand-painted **Stylized** presets: Toon brick, cobblestone, stone wall, planks, grass, sand, dirt, and tiles.
-- Raise the maximums for deep relief, occlusion, normal strength, and baked lighting. Saved graphs load unchanged.
-- **Pulsing glow** uses **Blended** surface alpha, so its soft halo fades smoothly.
+- 8 new **Sci-fi** presets: Sci-fi panels, Hex armor, Metal compartments, Ribbed siding, Vent grille, Glowing tech panel, Grimy space panels, and Hazard plating. The metal only reflects where it is chipped, scratched, or rubbed clean. Light strips glow.
+- 8 new hand-painted **Stylized** presets: Toon brick, cobblestone, stone wall, planks, grass, sand, dirt, and tiles.
+- Higher maximum values for relief depth, occlusion, normal strength, and baked lighting.
+- **Pulsing glow** now uses **Blended** alpha, so its halo fades out smoothly.
 
 ### Preview and performance
 
-- Show the shader state at the right end of the status bar: red **Compiling shaders**, green **Shaders compiled**.
-- Keep compiled shaders between sessions. **Settings > Preferences > Shader cache** shows the cache size and clears it.
-- Compile shaders much faster. On an AMD integrated GPU, Toon cobblestone took 94 s to compile its node thumbnails; it now takes 0.6 s.
-- Keep 4096 × 4096 graphs responsive: clicks, orbiting, panning, and material changes no longer re-render the texture.
-- Update animated node thumbnails at the rate set in Preferences, all in step.
-- Rename the **3D material** tab to **FDV material**. Switch Unlit with the sun icon, toggle mipmaps, fog, the occluder, and the environment map from icons in the view, and preview tiling at 1 × 1, 2 × 2, or 4 × 4.
+- The status bar shows **Compiling shaders** in red while shaders compile and **Shaders compiled** in green when they are done.
+- Compiled shaders are saved between sessions. **Settings > Preferences > Shader cache** shows the size and can clear it.
+- Shaders compile much faster. Toon cobblestone used to take 94 s to compile its node thumbnails on an AMD integrated GPU. Now it takes 0.6 s.
+- 4096 × 4096 graphs stay responsive. Clicking, orbiting, and changing material settings no longer re-render the texture.
+- Animated node thumbnails update at the rate set in Preferences.
+- The **3D material** tab is now called **FDV material**. The icons in the view switch Unlit, mipmaps, fog, the occluder, and the environment map. Tiling can be set to 1 × 1, 2 × 2, or 4 × 4.
 
 ### Export
 
-- Optionally write an OBJ/MTL preview quad with FDV materials and sprite sheets.
-- Refuse FDV material DTEX that is uncompressed and mipmapped, which FDV Engine on Dreamcast cannot load. Correction buttons fix it.
-- **Use in Texture Converter** on an animated graph sends the current frame as a still image, and playback continues afterwards.
+- FDV materials and sprite sheets can also write an OBJ/MTL preview quad.
+- FDV material export refuses DTEX textures that are uncompressed and mipmapped, because FDV Engine on Dreamcast cannot load them. Buttons next to the message fix the settings.
+- **Use in Texture Converter** on an animated graph sends the current frame. Playback keeps running afterwards.
 
 ### Documentation
 
-- Add a file format reference for FDV materials, Dreamcast textures, and sprite sheet metadata.
-- Refresh every screenshot, and add guide sections for the workspace, layouts, colors, graph maps, and the shader status.
+- New file format reference for FDV materials, Dreamcast textures, and sprite sheet metadata.
+- All screenshots are new. The user guide has new sections for the workspace, layouts, colors, graph maps, and the shader status.
 
-### Updating and compatibility
+### Updating
 
-Close Texture Studio before updating. Installed packages do not need to be uninstalled first.<br>
-For portable packages, extract the complete ZIP into a fresh folder and keep any graphs or images stored in the old folder.
+Close Texture Studio before updating. You don't need to uninstall the old version first.<br>
+For the portable ZIP, extract it into a new folder. Keep your own graphs and images from the old folder.
 
-Existing graphs remain readable in 0.3.0.<br>
-Graphs with more than 64 nodes, including the new Sci-fi presets, require 0.3.0 or newer.<br>
-The first time you open each graph after updating, its shaders compile once. After that they load from the shader cache.
+Graphs from older versions open in 0.3.0.<br>
+Graphs with more than 64 nodes, such as the new Sci-fi presets, need 0.3.0 or newer.<br>
+Each graph compiles its shaders once the first time you open it after the update.
 
 ## 0.2.0
 

@@ -131,9 +131,9 @@ The Studio writes every key in this section in every `.fdvmat`.<br>
 | Key                  | Type    | Default | Meaning                                                                                                 |
 | :------------------- | :------ | :------ | :------------------------------------------------------------------------------------------------------ |
 | `version`            | integer | `1`     | `2` if `wrapU` or `wrapV` is not 0, otherwise `1`. See [Compatibility](#15-versions-and-compatibility). |
-| `name`               | string  | —       | The material name. FDV uses the name as the identity of the material.                                   |
+| `name`               | string  | none    | The material name. FDV uses the name as the identity of the material.                                   |
 | `assetPathsRelative` | boolean | `true`  | `true`: `texture` and `envMap` are relative to the `.fdvmat` folder.                                    |
-| `texture`            | string  | —       | The surface texture file. See [1.3](#13-texture-references-and-formats).                                |
+| `texture`            | string  | none    | The surface texture file. See [1.3](#13-texture-references-and-formats).                                |
 | `studioGraph`        | string  | `""`    | `<name>.fdvgraph` when the bundle contains a graph, otherwise `""`. Information only.                   |
 
 #### Surface
@@ -142,9 +142,9 @@ The Studio writes every key in this section in every `.fdvmat`.<br>
 | :------------------- | :----------------- | :------------- | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `color`              | array of 4 numbers | `[1, 1, 1, 1]` | 0 to 1 each | Red, green, blue and alpha. FDV multiplies the texture by this color.                                                                                                                                             |
 | `lighting`           | integer            | `0`            | 0 or 1      | `0` Lit: scene and baked lights apply. `1` Unlit: full texture color, no lighting. FDV also turns fog off for an Unlit material.                                                                                  |
-| `fog`                | boolean            | `true`         | —           | The surface receives distance fog.                                                                                                                                                                                 |
-| `twoSided`           | boolean            | `false`        | —           | `true` draws both faces. `false` removes back faces.                                                                                                                                                               |
-| `depthTest`          | boolean            | `true`         | —           | `false`: the surface ignores the depth buffer and draws over earlier geometry. There is no depth-write key. On the PVR, opaque and cutout surfaces write depth and blended surfaces do not.                        |
+| `fog`                | boolean            | `true`         | none        | The surface receives distance fog.                                                                                                                                                                                 |
+| `twoSided`           | boolean            | `false`        | none        | `true` draws both faces. `false` removes back faces.                                                                                                                                                               |
+| `depthTest`          | boolean            | `true`         | none        | `false`: the surface ignores the depth buffer and draws over earlier geometry. There is no depth-write key. On the PVR, opaque and cutout surfaces write depth and blended surfaces do not.                        |
 | `transparency`       | integer            | `0`            | 0 to 2      | `0` Opaque. `1` Cutout: texels are fully drawn or discarded (PVR punch-through list). `2` Blended: mixed with the background by `blend` (PVR translucent list).                                                    |
 | `blend`              | integer            | `4`            | 1 to 5      | The mix for a Blended surface. FDV reads it only when `transparency` is `2`. See [Blend modes](#blend-modes).                                                                                                      |
 | `alphaTestThreshold` | number             | `0.25`         | 0 to 1      | The cutout limit for a Cutout surface. FDV on desktop draws a texel only when its alpha is greater than this value.                                                                                                |
@@ -160,7 +160,7 @@ FDV Editor reads an unknown name as not set.
 | :--------------- | :------ | :------ | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `filter`         | integer | `0`     | 0 or 1  | `0` bilinear (smooth). `1` nearest (sharp texels).                                                                                                                                                                                  |
 | `wrapU`, `wrapV` | integer | `0`     | 0 to 2  | Behavior outside the 0 to 1 texture range. `0` Repeat. `1` Clamp. `2` Mirrored repeat.                                                                                                                                             |
-| `useMipmaps`     | boolean | `true`  | —       | Use the mip chain of the texture file when it has one. The Studio copies the **Mipmaps** export option.                                                                                                                             |
+| `useMipmaps`     | boolean | `true`  | none    | Use the mip chain of the texture file when it has one. The Studio copies the **Mipmaps** export option.                                                                                                                             |
 | `mipBias`        | integer | `2`     | 1 to 15 | The PVR mip bias, in steps of 0.25. Bias = value × 0.25. `4` (1.00) is neutral. Lower values select larger mip levels (sharper). Higher values select smaller mip levels (softer, less texture bandwidth). The default `2` is 0.50. |
 
 #### Tiling and scrolling
@@ -168,8 +168,8 @@ FDV Editor reads an unknown name as not set.
 | Key                  | Type               | Default  | Range   | Meaning                                                                                                                                             |
 | :------------------- | :----------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `tilingU`, `tilingV` | number             | `1`      | 0 to 64 | Repeats per meter: copies of the texture per meter of surface along U and V. `0` means not stated. FDV Editor uses these values to set UV mapping.  |
-| `uvTiling`           | array of 2 numbers | `[1, 1]` | —       | A UV scale that FDV Editor applies when it generates some geometry. The Studio always writes `[1, 1]`.                                              |
-| `uvOffset`           | array of 2 numbers | `[0, 0]` | —       | A UV offset that FDV Editor applies when it generates some geometry. The Studio always writes `[0, 0]`.                                             |
+| `uvTiling`           | array of 2 numbers | `[1, 1]` | none    | A UV scale that FDV Editor applies when it generates some geometry. The Studio always writes `[1, 1]`.                                              |
+| `uvOffset`           | array of 2 numbers | `[0, 0]` | none    | A UV offset that FDV Editor applies when it generates some geometry. The Studio always writes `[0, 0]`.                                             |
 | `uvScroll`           | array of 2 numbers | `[0, 0]` | finite  | Texture scroll speed in U and V, in wraps per second. A wrap is one full texture width or height. The sign convention for direction is Unspecified. |
 
 #### Environment map
@@ -177,17 +177,17 @@ FDV Editor reads an unknown name as not set.
 | Key                        | Type               | Default        | Range       | Meaning                                                                                                                            |
 | :------------------------- | :----------------- | :------------- | :---------- | :--------------------------------------------------------------------------------------------------------------------------------- |
 | `envMapMode`               | integer            | `0`            | 0 to 3      | `0` None. `1` Reflection. `2` Gloss. `3` Alpha mask. See below.                                                                    |
-| `envMap`                   | string             | `""`           | —           | The environment map file. `""` when `envMapMode` is `0`.                                                                           |
+| `envMap`                   | string             | `""`           | none        | The environment map file. `""` when `envMapMode` is `0`.                                                                           |
 | `envMapBlend`              | integer            | `0`            | 0 to 8      | How the reflection pass mixes with the surface. FDV reads it only in mode `1`. See [Blend modes](#blend-modes).                    |
 | `envMipBias`               | integer            | `0`            | 0 to 15     | Mip bias of the environment map, on the `mipBias` scale. `0` uses `mipBias`.                                                       |
 | `envTint`                  | array of 4 numbers | `[1, 1, 1, 1]` | 0 to 1 each | RGBA multiplier for the environment map. Alpha controls the strength of the pass.                                                  |
 | `envUvScale`               | array of 2 numbers | `[1, 1]`       | 0.01 to 64  | Repeats of the environment map across the surface.                                                                                 |
 | `envRotDamp`               | number             | `1`            | 0 to 1      | Camera influence. `1` moves like a mirror. `0` keeps the reflection fixed. Ignored when `envFreezeRotation` is `true`.             |
-| `envFreezeRotation`        | boolean            | `false`        | —           | Compute the reflection from fixed world axes and ignore the camera.                                                                |
-| `envMirror`                | boolean            | `false`        | —           | Use the view reflection vector instead of the surface normal. A flat surface then reflects a varied picture instead of one color. |
+| `envFreezeRotation`        | boolean            | `false`        | none        | Compute the reflection from fixed world axes and ignore the camera.                                                                |
+| `envMirror`                | boolean            | `false`        | none        | Use the view reflection vector instead of the surface normal. A flat surface then reflects a varied picture instead of one color. |
 | `envBendDeg`               | number             | `0`            | 0 to 180    | Normal bend in degrees. Tilts vertex normals toward the face edges, for the reflection only. `0` is off.                           |
 | `envScrollU`, `envScrollV` | number             | `0`            | finite      | Environment map scroll speed in wraps per second. Independent of `uvScroll`.                                                       |
-| `envAlphaMaskCutout`       | boolean            | `false`        | —           | Mode `3` only. `true`: the pass uses alpha blending, so alpha 0 shows the surface. `false`: an additive sheen.                     |
+| `envAlphaMaskCutout`       | boolean            | `false`        | none        | Mode `3` only. `true`: the pass uses alpha blending, so alpha 0 shows the surface. `false`: an additive sheen.                     |
 
 Environment modes:
 
@@ -207,15 +207,15 @@ The **source** is the new texel. The **destination** is the color already in the
 
 | Value | Name                           | Source factor         | Destination factor |    `blend`    | `envMapBlend` |
 | :---- | :----------------------------- | :-------------------- | :----------------- | :-----------: | :-----------: |
-| `0`   | Engine default                 | source alpha          | 1 − source alpha   |       —       |      Yes      |
+| `0`   | Engine default                 | source alpha          | 1 − source alpha   |       none         | Yes      |
 | `1`   | Additive                       | source alpha          | 1                  |      Yes      |      Yes      |
 | `2`   | Multiply                       | 0                     | destination color |      Yes      |      Yes      |
 | `3`   | Premultiplied alpha            | 1                     | 1 − source alpha   |      Yes      |      Yes      |
 | `4`   | Alpha blend                    | source alpha          | 1 − source alpha   | Yes (default) |      Yes      |
 | `5`   | Alpha blend, destination alpha | source alpha          | destination alpha  |      Yes      |      Yes      |
-| `6`   | Replace                        | 1                     | 0                  |       —       |      Yes      |
-| `7`   | Holes reflect (add)            | 1 − destination alpha | 1                  |       —       |      Yes      |
-| `8`   | Holes mirror (replace)         | 1 − destination alpha | destination alpha  |       —       |      Yes      |
+| `6`   | Replace                        | 1                     | 0                  |       none         | Yes      |
+| `7`   | Holes reflect (add)            | 1 − destination alpha | 1                  |       none         | Yes      |
+| `8`   | Holes mirror (replace)         | 1 − destination alpha | destination alpha  |       none         | Yes      |
 
 - Modes `7` and `8` read the alpha that the opaque surface pass left in the frame. Alpha 0 marks a hole. They work only with `envMapMode` `1` and `alphaHoles` `1`. In mode `1`, the Studio refuses them unless `alphaHoles` is `1`.
 - When DTEX is on, the Studio refuses RGB565 for a material whose `transparency` or `alphaHoles` is not `0`, because RGB565 has no alpha.
@@ -318,13 +318,13 @@ All containers share this pixel data. Only the header differs.
 
 | Format     | Bits 15 to 0                                                                                 |
 | :--------- | :------------------------------------------------------------------------------------------- |
-| ARGB1555   | A (15), R (14–10), G (9–5), B (4–0). A = 1 is opaque.                                        |
-| RGB565     | R (15–11), G (10–5), B (4–0). Always opaque.                                                 |
-| ARGB4444   | A (15–12), R (11–8), G (7–4), B (3–0).                                                       |
-| YUV422     | Y in bits 15–8. Bits 7–0 hold U in the first texel of a horizontal pair and V in the second. |
-| Normal map | Bits 15–8: elevation. Bits 7–0: azimuth = value ÷ 256 × 360°.                                |
+| ARGB1555   | A (15), R (14 to 10), G (9 to 5), B (4 to 0). A = 1 is opaque.                                        |
+| RGB565     | R (15 to 11), G (10 to 5), B (4 to 0). Always opaque.                                                 |
+| ARGB4444   | A (15 to 12), R (11 to 8), G (7 to 4), B (3 to 0).                                                       |
+| YUV422     | Y in bits 15 to 8. Bits 7 to 0 hold U in the first texel of a horizontal pair and V in the second. |
+| Normal map | Bits 15 to 8: elevation. Bits 7 to 0: azimuth = value ÷ 256 × 360°.                                |
 
-- The Studio decodes the normal map with angle from the Z axis = (255 − bits 15–8) ÷ 255 × 90°.
+- The Studio decodes the normal map with angle from the Z axis = (255 − bits 15 to 8) ÷ 255 × 90°.
 - The Studio decodes YUV422 with U′ = U − 128, V′ = V − 128, then R = Y + 1.375 V′, G = Y − 0.34375 U′ − 0.6875 V′, B = Y + 1.71875 U′. In a mipmapped YUV422 texture, the Studio decodes the 1 × 1 level as RGB565.
 
 **Paletted texels:** 8-bit data stores one index per byte. 4-bit data stores two indices per byte: the first texel in the low 4 bits and the next texel in the high 4 bits. The colors are in a separate [palette file](#29-palette-pal).
@@ -388,11 +388,11 @@ DTEX is the texture format of FDV Engine on Dreamcast. pvrtex calls it the `.TEX
 | :---- | :------------------------------------------------------------------------------------------ |
 | 31    | 1 = mipmapped                                                                               |
 | 30    | 1 = VQ compressed                                                                           |
-| 29–27 | Pixel format code ([2.2](#22-pixel-data))                                                   |
+| 29 to 27 | Pixel format code ([2.2](#22-pixel-data))                                                   |
 | 26    | 1 = linear (not twiddled). Ignored for palette formats.                                     |
 | 25    | 1 = stride                                                                                  |
-| 24–5  | 0                                                                                           |
-| 4–0   | (true width ÷ 32) mod 32. Readers use it only when bit 25 is 1. The Studio reads 0 as 1024. |
+| 24 to 5  | 0                                                                                           |
+| 4 to 0   | (true width ÷ 32) mod 32. Readers use it only when bit 25 is 1. The Studio reads 0 as 1024. |
 
 **Data** starts at byte 16:
 
@@ -423,13 +423,13 @@ DT (`DcTx`) is the pvrtex native format. Its header is 32 bytes and its data is 
 | :---- | :-------------------------------------------- |
 | 31    | 1 = mipmapped                                 |
 | 30    | 1 = VQ compressed                             |
-| 29–27 | Pixel format code                             |
+| 29 to 27 | Pixel format code                             |
 | 26    | 1 = linear. Not used for palette formats.     |
 | 25    | 1 = stride (width not a power of two)         |
 | 11    | 1 = partial: the height is not a power of two |
-| 10–6  | Stride value: width ÷ 32                      |
-| 5–3   | PVR width code: 0 = 8, 1 = 16 … 7 = 1024      |
-| 2–0   | PVR height code, same scale                   |
+| 10 to 6  | Stride value: width ÷ 32                      |
+| 5 to 3   | PVR width code: 0 = 8, 1 = 16 … 7 = 1024      |
+| 2 to 0   | PVR height code, same scale                   |
 
 DT supports a **small codebook**. The codebook holds `C` = (byte 10) + 1 entries.<br>
 An index `i` selects entry `i − (256 − C)`.
@@ -444,10 +444,10 @@ PVR is the PowerVR texture format that PC viewers and many Dreamcast games use. 
 |   4    |  4   | Chunk size   | See below                                                         |
 |   8    |  1   | Pixel format | Code from [2.2](#22-pixel-data)                                   |
 |   9    |  1   | Layout       | See below                                                         |
-|   10   |  2   | —            | 0                                                                 |
+|   10   |  2   | none         | 0                                                                 |
 |   12   |  2   | Width        | Texels                                                            |
 |   14   |  2   | Height       | Texels                                                            |
-|   16   |  —   | Data         | —                                                                 |
+|   16   |  none| Data         | none                                                             | 
 
 **Layout codes:**
 
@@ -479,7 +479,7 @@ The DPAL palette format stores the colors of a paletted texture.
 | :----: | :-------: | :------ | :------------------------------------------------------- |
 |   0    |     4     | Magic   | ASCII `DPAL`                                             |
 |   4    |     4     | Count   | Number of colors, 1 to 256                              |
-|   8    | 4 × Count | Colors | 32-bit ARGB8888: A (31–24), R (23–16), G (15–8), B (7–0) |
+|   8    | 4 × Count | Colors | 32-bit ARGB8888: A (31 to 24), R (23 to 16), G (15 to 8), B (7 to 0) |
 
 - The palette of `fire.dtex` is `fire.dtex.pal` (the full texture file name plus `.pal`). The Studio also finds `fire.pal` when the first name does not exist.
 - A 4-bit texture uses at most 16 colors.
@@ -499,9 +499,9 @@ pvrtex can store rows bottom-up (`--flip-v`). The header has no flag for this.
 | :----------------------------------------------------------------- | :-------------------------------------- |
 | Base size 8 to 1024 per side                                       | All Dreamcast containers                |
 | Power-of-two sizes                                                 | Twiddled textures                       |
-| Width 8, 16 or a multiple of 32; no palette, normal map or mipmaps | Stride textures                         |
+| Width 8, 16 or a multiple of 32, no palette, normal map or mipmaps | Stride textures                         |
 | Square size                                                        | Mipmapped textures                      |
-| RGB565, ARGB1555, ARGB4444 or AUTO; twiddled; no small codebook    | Material DTEX (surface and environment) |
+| RGB565, ARGB1555, ARGB4444 or AUTO, twiddled, no small codebook    | Material DTEX (surface and environment) |
 | VQ compression when mipmaps are on                                 | Material DTEX (surface and environment) |
 | Square size if environment mipmaps are on                          | Environment DTEX                        |
 

@@ -202,7 +202,7 @@ Undo removes an entire paste or duplication in one step.
 Right-click a compatible node and choose **Bypass node**, or use its inspector checkbox.<br>
 It passes through its first input while keeping its settings and connections.
 
-<img src="media/guide/bypassed-node.png" width="1080" alt="Bypassed Blend modes node with black and yellow stripes and BYPASSED in its footer; the inspector shows Bypass node enabled">
+<img src="media/guide/bypassed-node.png" width="1080" alt="Bypassed Blend modes node with black and yellow stripes and BYPASSED in its footer. The inspector shows Bypass node enabled">
 
 Bypass changes the final texture and exports. Toggle it off or use Undo to restore the operation.<br>
 Generators and operations without a suitable source input do not offer bypass.
@@ -337,7 +337,7 @@ Exports use the requested document resolution. The status bar shows preview and 
 
 ### Shader status
 
-Texture Studio turns each graph into GPU shaders. A change that adds, removes, or reconnects nodes needs new shaders; changing a setting does not.
+Texture Studio turns each graph into GPU shaders. A change that adds, removes, or reconnects nodes needs new shaders. Changing a setting does not.
 
 The right end of the status bar shows the state:
 
