@@ -1,5 +1,64 @@
 # Release notes
 
+## 0.3.0
+
+### Workspace
+
+- **GPU Creator** is now **Texture Creator**, and **Use in converter** is now **Use in Texture Converter**.
+- Dock, tab, float, and resize the **Controls**, **Node inspector**, **Preview**, **Node graph**, and **FDV material** panels. Close a panel with its **×** and show it again from the new **View** menu. **View > Reset layout** restores the default.
+- Fill the window with the node graph using **Focus graph**, **View > Focus graph**, or **F11**. A 3D material preview sits in the graph's corner, and the node inspector sits in a column beside it.
+- Save up to four named layouts with **View > Layouts > Save layout as...**.
+- Edit FDV material settings in their own panel, by default a full-height column on the right.
+- Use Roboto for the interface font. **Settings** and **Help** moved to the right end of the menu bar.
+- Start with the **New graph** Checker document.
+- Show the **Recover graph** prompt once for each session that ended without a normal close.
+- Show **Export sprite sheet** and the animation controls only when a Time node drives the material output.
+
+### Node editing
+
+- Edit colors with one color picker: a hue wheel, an alpha bar, and RGB, HSV, and hex fields. Pin a whole color.
+- Show the node type in each node's header and the node's own name in its footer, with **OUTPUT** or **BYPASSED** beside it.
+- Assign the graph's Output, Albedo, Height, and Normal maps with **Use this node as** in the node inspector. Each tooltip names the node that supplies the map now.
+- Build graphs of up to 256 nodes. The previous limit was 64.
+- Graphs where a costly height feeds **Relief lighting**, **Normal**, or a filter no longer fail with "GPU evaluation budget".
+- Record one Undo step per drag instead of one per frame.
+
+### Presets
+
+- Add 8 **Sci-fi** presets: Sci-fi panels, Hex armor, Metal compartments, Ribbed siding, Vent grille, Glowing tech panel, Grimy space panels, and Hazard plating. Metal reflects the environment only through chips, scratches, bolts, and rubbed-clean areas. LED strips glow with a slight bloom.
+- Add 8 hand-painted **Stylized** presets: Toon brick, cobblestone, stone wall, planks, grass, sand, dirt, and tiles.
+- Raise the maximums for deep relief, occlusion, normal strength, and baked lighting. Saved graphs load unchanged.
+- **Pulsing glow** uses **Blended** surface alpha, so its soft halo fades smoothly.
+
+### Preview and performance
+
+- Show the shader state at the right end of the status bar: red **Compiling shaders**, green **Shaders compiled**.
+- Keep compiled shaders between sessions. **Settings > Preferences > Shader cache** shows the cache size and clears it.
+- Compile shaders much faster. On an AMD integrated GPU, Toon cobblestone took 94 s to compile its node thumbnails; it now takes 0.6 s.
+- Keep 4096 × 4096 graphs responsive: clicks, orbiting, panning, and material changes no longer re-render the texture.
+- Update animated node thumbnails at the rate set in Preferences, all in step.
+- Rename the **3D material** tab to **FDV material**. Switch Unlit with the sun icon, toggle mipmaps, fog, the occluder, and the environment map from icons in the view, and preview tiling at 1 × 1, 2 × 2, or 4 × 4.
+
+### Export
+
+- Optionally write an OBJ/MTL preview quad with FDV materials and sprite sheets.
+- Refuse FDV material DTEX that is uncompressed and mipmapped, which FDV Engine on Dreamcast cannot load. Correction buttons fix it.
+- **Use in Texture Converter** on an animated graph sends the current frame as a still image, and playback continues afterwards.
+
+### Documentation
+
+- Add a file format reference for FDV materials, Dreamcast textures, and sprite sheet metadata.
+- Refresh every screenshot, and add guide sections for the workspace, layouts, colors, graph maps, and the shader status.
+
+### Updating and compatibility
+
+Close Texture Studio before updating. Installed packages do not need to be uninstalled first.<br>
+For portable packages, extract the complete ZIP into a fresh folder and keep any graphs or images stored in the old folder.
+
+Existing graphs remain readable in 0.3.0.<br>
+Graphs with more than 64 nodes, including the new Sci-fi presets, require 0.3.0 or newer.<br>
+The first time you open each graph after updating, its shaders compile once. After that they load from the shader cache.
+
 ## 0.2.0
 
 ### Node editing

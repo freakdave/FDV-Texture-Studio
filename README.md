@@ -10,7 +10,7 @@ Create textures, inspect them in 3D, and export them for your game.<br> A native
 
 **[Download from Releases](https://github.com/freakdave/FDV-Texture-Studio/releases)** &nbsp; · &nbsp; **[Explore the features](#built-for-the-whole-texture-workflow)** &nbsp; · &nbsp; **[User guide](docs/USER_GUIDE.md)**
 
-**94 presets** &nbsp; / &nbsp; **79 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
+**110 presets** &nbsp; / &nbsp; **79 node types** &nbsp; / &nbsp; **Up to 4096 × 4096**
 
 <table width="100%">
   <tr>
@@ -25,13 +25,20 @@ Create textures, inspect them in 3D, and export them for your game.<br> A native
     <td align="center" width="25%"><img src="docs/media/plasma-arcs.gif" width="100%" alt="Animated electrical plasma filaments"><br><b>Plasma arcs</b></td>
     <td align="center" width="25%"><img src="docs/media/water-caustics.gif" width="100%" alt="Moving underwater light patterns"><br><b>Water caustics</b></td>
   </tr>
+  <tr>
+    <td align="center" width="25%"><img src="docs/media/sci-fi-panels.jpg" width="100%" alt="Blue-gray sci-fi panels with vents, cyan light strips and a hazard stripe decal"><br><b>Sci-fi panels</b></td>
+    <td align="center" width="25%"><img src="docs/media/hazard-plating.jpg" width="100%" alt="Steel plates inside worn yellow and black hazard stripes"><br><b>Hazard plating</b></td>
+    <td align="center" width="25%"><img src="docs/media/toon-cobblestone.jpg" width="100%" alt="Hand-painted cobblestones with light tops and dark gaps"><br><b>Toon cobblestone</b></td>
+    <td align="center" width="25%"><img src="docs/media/toon-planks.jpg" width="100%" alt="Hand-painted warm wooden planks"><br><b>Toon planks</b></td>
+  </tr>
 </table>
 
 </div>
 
 ## Materials and effects
 
-Choose from 94 presets covering stone, gravel, mud, wood, metal, fabric, glass, water, fire, smoke, and energy effects.<br>
+Choose from 110 presets covering stone, gravel, mud, wood, metal, fabric, glass, water, fire, smoke, and energy effects.<br>
+New in 0.3.0: weathered **Sci-fi** panels and hand-painted **Stylized** materials for toon-style games.<br>
 Adjust the seed, colors, surface detail, and animation, or build a graph from scratch.<br>
 Save custom presets for reuse.
 
@@ -39,7 +46,8 @@ Save custom presets for reuse.
 
 | Feature | What you can do |
 | :--- | :--- |
-| **Node editor** | Build with 79 node types, animated thumbnails, and colored categories. |
+| **Node editor** | Build graphs of up to 256 nodes from 79 node types, with animated thumbnails and colored categories. |
+| **Workspace** | Dock and resize panels, focus on the node graph with a 3D corner preview, and save up to four layouts. |
 | **Materials** | Generate up to 4096 × 4096 with material, albedo, height, and normal outputs. |
 | **3D preview** | Inspect a sphere, cube, or plane with tiling and environment reflections. |
 | **Animation** | Preview loops and export sprite sheets with frame and timing metadata. |
@@ -48,20 +56,21 @@ Save custom presets for reuse.
 
 ### Interactive Node Graph
 
-<img src="docs/media/acid-node-graph.gif" width="1280" alt="Acid bubbles node graph with animated thumbnails for pigment, normals, highlights and material output">
+<img src="docs/media/acid-node-graph.gif" width="1000" alt="Acid bubbles node graph with animated thumbnails for pigment, normals, highlights and material output">
 
 _Acid bubbles: animated node previews._
 
 ### Preview materials in 3D views
 
-<img src="docs/media/material-preview.png" width="1280" alt="Wet mud in the 3D material preview">
+<img src="docs/media/material-preview.png" width="1280" alt="Grimy space panels on a cube in the FDV material preview, with reflections in the chipped and stained areas">
 
-Switch between the texture and 3D views to check seams, surface detail, and reflections.
+Switch between the texture and 3D views to check seams, surface detail, and reflections.<br>
+_Grimy space panels: the environment reflects only through chips, scratches, and stains._
 
 Export PNG or JPEG images, animated sprite sheets, Dreamcast textures, or FDV material bundles.<br>
 Save a `.fdvgraph` to keep your work editable.
 
-See the [user guide](docs/USER_GUIDE.md) for export formats and settings.
+See the [user guide](docs/USER_GUIDE.md) for export formats and settings, and [File formats](docs/FILE_FORMATS.md) to read exports in another engine.
 
 ## Download
 
@@ -79,10 +88,10 @@ KOS and WSL are not needed to run the release packages.
 
 ## Your first texture
 
-1. **Choose a preset** in GPU Creator.<br>Pick a resolution and seed.
+1. **Choose a preset** in Texture Creator.<br>Pick a resolution and seed.
 2. **Make it your own.** Select nodes to edit colors, shapes, surface detail, or animation.
-3. **Inspect the result.** Switch between Texture and 3D material.<br>Enable 2 × 2 tiling to check repeats.
-4. **Export.** Save an image, export a sprite sheet, or use the converter for Dreamcast encoding.<br>Save the graph to keep it editable.
+3. **Inspect the result.** Switch between Texture and FDV material.<br>Set **Tiling** to 2 × 2 or 4 × 4 to check repeats.
+4. **Export.** Save an image, export a sprite sheet, or use the Texture Converter for Dreamcast encoding.<br>Save the graph to keep it editable.
 
 See the **[user guide](docs/USER_GUIDE.md)** for graph controls, animation, conversion, and material export.
 
