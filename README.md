@@ -95,6 +95,17 @@ KOS and WSL are not needed to run the release packages.
 
 See the **[user guide](docs/USER_GUIDE.md)** for graph controls, animation, conversion, and material export.
 
+## Command line
+
+Export the maps of a graph, a preset or a whole folder of graphs to PNG or Dreamcast DTEX files without a window:
+
+```
+fdv-texture-studio --export Wall.fdvgraph --out SourceArt/Textures/Wall --size 2048 --maps albedo,normal,height,roughness
+fdv-texture-studio --export Graphs --out SourceArt --recursive --size 512 --dtex
+```
+
+Run `fdv-texture-studio --help` for the options. The [user guide](docs/USER_GUIDE.md#export-maps-from-the-command-line) lists the map names and the DTEX settings.
+
 ## About this repository
 
 This is the public showcase, documentation, and binary release home for **FDV Texture Studio**.<br>

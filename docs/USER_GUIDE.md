@@ -51,7 +51,7 @@ Saved graphs and custom presets are kept when updating installed packages.
 From the download folder, run:
 
 ```sh
-sudo apt install ./fdv-texture-studio_0.3.0_amd64.deb
+sudo apt install ./fdv-texture-studio_0.4.0_amd64.deb
 ```
 
 Custom presets are stored outside the installation folder:
@@ -234,7 +234,7 @@ Narrow panels show only the swatch. Pinned controls, property search, and FDV ma
 
 ### Choose which node supplies each map
 
-A graph has four maps. Each map comes from one node:
+A graph has up to nine maps. Each map comes from one node:
 
 | Map        | Used by                                                                                  |
 | :--------- | :--------------------------------------------------------------------------------------- |
@@ -242,8 +242,9 @@ A graph has four maps. Each map comes from one node:
 | **Albedo** | The Preview's **Albedo** button and Texture Sample nodes that read this graph's Albedo   |
 | **Height** | The Preview's **Height** button and Texture Sample nodes that read this graph's Height   |
 | **Normal** | The Preview's **Normal** button and Texture Sample nodes that read this graph's Normal   |
+| **Roughness**, **Metallic**, **AO**, **Emissive**, **Opacity** | The Preview's button of the same name and the command-line export. Studio saves them in the graph. The `.fdvmat` has no slot for them |
 
-The buttons under **Use this node as** in the node inspector assign these maps.<br>
+The buttons under **Use this node as** in the node inspector assign these maps. The second row holds the PBR maps.<br>
 A green button means the selected node supplies that map. Click a button to move that map to the selected node.<br>
 Point at a button to see which node supplies the map now. Right-click it to revert the map.
 
@@ -508,6 +509,43 @@ Apply suggested corrections beside each message as needed. Export validates the 
 </details>
 
 To read FDV materials, Dreamcast textures, or sprite sheet metadata in another engine, see [File formats](FILE_FORMATS.md).
+
+## Export maps from the command line
+
+`fdv-texture-studio --export` renders the maps of a graph to PNG or Dreamcast DTEX files without opening a window.<br>
+Use it in build scripts. It works on Windows and Linux and needs an OpenGL 3.3 driver.
+
+```
+fdv-texture-studio --export Wall.fdvgraph --out SourceArt/Textures/Wall --size 2048 --maps albedo,normal,height,roughness
+fdv-texture-studio --export "preset:Wet gravel" --out out --maps all
+fdv-texture-studio --export Graphs --out SourceArt --recursive --size 512 --dtex --pixel ARGB4444
+```
+
+| Option                  | Meaning                                                                                     |
+| :---------------------- | :------------------------------------------------------------------------------------------ |
+| `--export <input>`      | A `.fdvgraph` file, a folder of graphs, or `preset:Name` for a built-in preset              |
+| `--out <folder>`        | Output folder. Studio creates it when it is missing                                         |
+| `--size N`              | Edge in pixels, 8 to 8192. Default: the size saved in the graph                             |
+| `--maps <list>`         | Comma list of map names, or `all`. Default: every map the graph has                         |
+| `--format png\|dtex`    | `png` (default) writes PNG files. `dtex` writes Dreamcast DTEX files only                   |
+| `--dtex`                | Write the DTEX files next to the PNG files                                                  |
+| `--recursive`           | With a folder: also export the graphs in its subfolders                                     |
+| `--pixel <format>`      | DTEX pixel format: `RGB565` (default), `ARGB1555` or `ARGB4444`                             |
+| `--vq <mode>`           | DTEX vector quantization: `256` (default, or 1 to 256 entries), `small`, or `0` for none    |
+| `--mipmaps on\|off`     | DTEX mipmaps. Default `on`. Studio builds them with the Kaiser filter                       |
+| `--kaiser <beta>`       | Kaiser filter beta for the mipmaps, 1 to 12. Default 4                                      |
+| `--pvrtex <path>`       | The KOS `pvrtex` encoder. Default: `FDV_PVRTEX`, or the `pvrtex` next to the program        |
+
+Studio writes `<folder>/<graph name>_<map>.png` (and `.dtex`) for each map and prints one line per file.<br>
+The map names are the ones in [Choose which node supplies each map](#choose-which-node-supplies-each-map):
+material, albedo, height, normal, roughness, metallic, ao, emissive and opacity.<br>
+Presets assign the maps they build. Roughness comes from the preset's relief lighting or specular node, and ao from its baked lighting occlusion input. Assign the other maps in the node inspector first.
+
+**DTEX.** The files use the same steps as the Export panel: a Kaiser mip chain, then `pvrtex`, with the rows flipped as FDV loads them (the same as Export FDV material). The size must be a power of two and at most 512. Studio never resizes silently: a larger size is an error. Mipmaps need a square image.
+
+**Folders.** A folder exports every `.fdvgraph` in it. The files go to `--out` with the graph name as prefix. With `--recursive`, a graph in a subfolder goes to the same subfolder below `--out`. Studio opens one OpenGL context for the whole run. A graph that fails does not stop the others. At the end Studio prints how many graphs it exported, how many failed and the names of the failed ones. With `--maps all` a graph writes the maps it has. An explicit map name that a graph lacks counts as a failure of that graph.
+
+**Exit codes.** 0 is success. For a single graph, 2 is a bad option or a missing map, 4 is an unreadable graph, 6 is a render or OpenGL failure and 7 is a file write failure. For a folder, 1 means at least one graph failed. The message goes to standard error.
 
 ## Preferences, autosave, and recovery
 

@@ -607,6 +607,7 @@ Do not use `.fdvgraph` files as a runtime format:
 - The key `fdvTextureGraph` holds the format version, `1` or `2`. The Studio refuses other versions. Graphs that use pinned controls or bypassed nodes are version `2` and need Texture Studio 0.2.0 or newer.
 - A graph holds up to 256 nodes. Texture Studio 0.2.0 refuses graphs with more than 64 nodes.
 - Its `material` object uses the `.fdvmat` keys and adds `writeDtex` and `envTexture` (export options for the environment map).
+- The keys `output`, `albedo`, `heightOutput` and `normal` hold the node id that supplies each map, or `-1`. The optional keys `roughness`, `metallic`, `ambientOcclusion`, `emissive` and `opacity` do the same for the PBR maps. A file without them has no such map. Older Studio versions ignore them.
 - Stability of the node data between Studio versions is Unspecified.
 
 To use a material in another engine, read the `.fdvmat` and its textures.

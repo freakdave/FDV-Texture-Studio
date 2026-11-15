@@ -1,63 +1,88 @@
 # Release notes
 
+## 0.4.0
+
+### Command line
+
+- Export maps without a window with `fdv-texture-studio --export <graph | folder | preset:Name> --out <folder>`. Choose `--size`, `--maps` (or `all`), `--format png|dtex`, `--dtex` (PNG and DTEX together) and `--recursive` for subfolders. It runs on Windows and Linux.
+- Write Dreamcast DTEX from the command line with `--pixel`, `--vq`, `--mipmaps`, `--kaiser` and `--pvrtex`. The files match the Export panel and stop at 512 pixels.
+- A folder exports every graph with one OpenGL context. A failing graph does not stop the rest, and the run ends with a summary.
+
+### PBR maps
+
+- A graph can supply roughness, metallic, ambient occlusion (`ao`), emissive and opacity maps, next to albedo, height and normal. Assign them with the second row of **Use this node as** buttons. The Preview has a button for each. The `.fdvgraph` file stores them in optional keys, so older files still load. The `.fdvmat` has no slot for them.
+- Presets assign roughness and ao where they already compute them.
+
 ## 0.3.0
+
+### Material preview
+
+- Rename the **3D material** preview tab to **FDV material**. The **Texture** tab shows what **Export texture** and **Export sprite sheet** save. The **FDV material** tab shows what **Export FDV material** saves.
+- Switch a material between lit and **Unlit** with the gold-framed sun in the FDV material view.
+- Toggle **Mipmapped preview**, **Preview fog**, **Show occluder**, and **Environment map** from icons in the view. A legend marks which icons change the FDV material and which are preview only.
+- Hide or show the material's environment map from the view to compare. The material keeps its setting.
+- Use the FDV icon as the default environment reflection.
+- Preview **Tiling** at 1 × 1, 2 × 2, or 4 × 4 in both Texture view and the 3D material preview.
+- Remove the dashed lines on cube edges and the sphere's seam in **Mipmapped preview**. Each pixel now selects its mip level from its own surface, as a rendered triangle does.
+- Edit the FDV material settings in their own **FDV material** panel, by default a full-height column on the right. They were in a collapsed section below the graph controls. Narrow color rows show just the swatch, which still opens the picker.
 
 ### Workspace
 
-- **GPU Creator** is now called **Texture Creator**. **Use in converter** is now **Use in Texture Converter**.
-- The panels can be docked, tabbed, floated, and resized. Closed panels come back from the new **View** menu. **View > Reset layout** restores the default.
-- **Focus graph** (also **F11**) shows only the node graph, with a small 3D preview in the corner and the node inspector on the right.
-- Save up to four layouts with **View > Layouts > Save layout as...**.
-- The FDV material settings have their own panel on the right.
-- New interface font: Roboto. **Settings** and **Help** are now at the right end of the menu bar.
-- The app starts with an empty **New graph** (a Checker node).
-- The **Recover graph** prompt now appears only once after a crash, not on every start.
-- **Export sprite sheet** and the animation controls only show up for animated graphs.
+- Use Roboto, the Unreal Engine editor font, for the interface instead of the built-in pixel font.
+- Rename **GPU Creator** to **Texture Creator**, and **Use in converter** to **Use in Texture Converter**.
+- Move **Settings** and **Help** to the right end of the menu bar, beside the new **View** menu.
+- Dock, float, tab, and resize the **Controls**, **Node inspector**, **Preview**, and **Node graph** panels. Close a panel with its **×** and show it again from **View**. The layout is saved in the user folder. **View > Reset layout** restores the default.
+- Fill the window with the node graph with the **Focus graph** button in the node graph toolbar, **View > Focus graph**, or **F11**. The same button reads **Exit focus** to return. As in Unreal Engine's material editor, a 3D material preview sits in the graph's corner. Drag it to orbit, click its shape icon to switch between sphere, cube, and plane, or hide it. The corner preview also appears whenever the Preview panel is hidden. The node inspector sits in a resizable column beside the focused graph. Clear **Inspector** to hide it.
+- The Texture Converter has its own panel layout.
+- Save up to four named layouts with **View > Layouts > Save layout as...**, load them from the same menu, and remove them with **Delete layout**. A layout keeps the panel arrangement, which panels are shown, and Focus graph with its inspector column. Saving under an existing name replaces that layout. Layouts are stored in the `layouts` folder of the user folder.
+- Start with the **New graph** Checker document, not the Brick preset.
+- Show the **Recover graph** startup prompt once for each session that ended without a normal close, for example after a crash. Before, it reappeared on every launch until **Dismiss startup reminders** was clicked. That button is gone. The autosaved copies stay available in **Recover graph...**.
+- Show **Export sprite sheet** and the Play, Frame, and Animation controls only when a Time node is connected to an output. This also works for custom graphs: an unconnected Time node does not count.
 
 ### Node editing
 
-- Colors have a proper color picker with a hue wheel, alpha, and RGB, HSV, and hex input. Whole colors can be pinned.
-- Node headers show the node type. The node's own name is in the footer, next to **OUTPUT** or **BYPASSED**.
-- **Use this node as** in the node inspector sets which node is the graph's Output, Albedo, Height, or Normal. The tooltip tells you which node has it now.
-- Graphs can have up to 256 nodes. The old limit was 64.
-- Fixed "GPU evaluation budget" errors when a complex height map feeds **Relief lighting**, **Normal**, or a filter.
-- Dragging a slider now creates one Undo step, not one per frame.
+- Edit node colors with one color picker instead of separate red, green, blue, and alpha sliders: **Color**, **Color ramp** (Low color, High color), and **Foliage colors**. Click the swatch for a hue wheel, an alpha bar, and RGB, HSV, and hex fields. Pins, property search, and FDV material colors use the same picker.
+- Show the node type in each node's header, so it reads the same in every graph. The graph's own name for the node moves to the footer in brighter text, with **OUTPUT** or **BYPASSED** at its right end.
+- Pin a whole color. Pins of a single color channel from older graphs show the whole color.
+- The node inspector shows **Use this node as** with one row of buttons: Output, Albedo, Height, and Normal. Each assigns which node supplies that map of the graph: Export saves the Output, and the Preview's Material output, Albedo, Height, and Normal buttons and Texture Sample nodes read them. The maps this node supplies are green. Each tooltip names the node that supplies the map now. Right-click reverts a map. **Preview node** and **Delete node** sit below.
+- Build graphs of up to 256 nodes, four times the old limit. Node settings now reach the GPU through a uniform buffer, which OpenGL 3.3 guarantees on every GPU. Built-in presets keep 8 nodes free for your own additions.
+- Graphs where a costly height feeds **Relief lighting**, **Normal**, or a filter no longer fail with "GPU evaluation budget". Those inputs render to their own texture first, so each sample now counts as one texture read.
+- Record one Undo step per drag. A drag on a slider or color previously added one step for each frame.
+
+### Performance
+
+- Keep compiled GPU shaders between sessions in the `shader-cache` folder of the user folder (at most 256 MB, the oldest unused shaders are removed first). A graph's shaders change only when its nodes or connections change, so reopening a preset or a saved graph skips compiling. A driver update recompiles automatically. **Settings > Preferences > Shader cache** shows its size and clears it.
+- Open the Toon presets in under a second. On an AMD integrated GPU, Toon cobblestone took 94 s to compile its node thumbnails and 2.2 s for its preview. Now it takes 0.6 s and 55 ms. Two causes are fixed below.
+- Compile only the shader functions a graph uses. Every preview pass and node thumbnail carried the whole 52 KB function library before. Most now carry 5 to 17 KB.
+- Render particle surfaces (Aggregate and Foliage) as their own pass for node previews and for previews up to 2048 × 2048. A node that read several of their channels inlined the particle loops once per channel, and one Toon cobblestone thumbnail took 19 s to compile.
+- Show the shader state at the right end of the status bar, where text of changing length beside it cannot move it: red **Compiling shaders** while the preview or the node thumbnails compile GPU shaders, green **Shaders compiled** when all are ready. A preview compile blocks the window for a moment on large graphs, so the status appears one frame before it, and the preview keeps its last image meanwhile.
+- Keep high resolutions such as 4096 × 4096 responsive. Clicks, wheel zoom, orbiting, panning, node moves, and FDV material changes no longer re-render the unchanged texture. Before, each of them caused a reduced render followed by a full-resolution render (about 190 ms at 4096 on an integrated GPU).
+- Update animated node thumbnails at the rate set in **Preferences**, all in step. Before, they updated one node after another at about 4 to 13 frames per second whatever the setting. Thumbnails never update faster than the graph's Clip FPS.
+- Use the reduced preview only while a held control, such as a slider drag, changes the texture, and during playback. Buttons, Undo, and loading render full resolution at once.
+
+### Texture Converter
+
+- **Use in Texture Converter** on an animated graph says which animation frame the converter holds as a still image. Creator playback continues after returning.
+- Keep a texture's description in the converter when its mipmaps are rebuilt.
 
 ### Presets
 
-- 8 new **Sci-fi** presets: Sci-fi panels, Hex armor, Metal compartments, Ribbed siding, Vent grille, Glowing tech panel, Grimy space panels, and Hazard plating. The metal only reflects where it is chipped, scratched, or rubbed clean. Light strips glow.
-- 8 new hand-painted **Stylized** presets: Toon brick, cobblestone, stone wall, planks, grass, sand, dirt, and tiles.
-- Higher maximum values for relief depth, occlusion, normal strength, and baked lighting.
-- **Pulsing glow** now uses **Blended** alpha, so its halo fades out smoothly.
-
-### Preview and performance
-
-- The status bar shows **Compiling shaders** in red while shaders compile and **Shaders compiled** in green when they are done.
-- Compiled shaders are saved between sessions. **Settings > Preferences > Shader cache** shows the size and can clear it.
-- Shaders compile much faster. Toon cobblestone used to take 94 s to compile its node thumbnails on an AMD integrated GPU. Now it takes 0.6 s.
-- 4096 × 4096 graphs stay responsive. Clicking, orbiting, and changing material settings no longer re-render the texture.
-- Animated node thumbnails update at the rate set in Preferences.
-- The **3D material** tab is now called **FDV material**. The icons in the view switch Unlit, mipmaps, fog, the occluder, and the environment map. Tiling can be set to 1 × 1, 2 × 2, or 4 × 4.
+- Raise the maximums for deep relief: **Relief depth** goes up to 1, **Occlusion radius** to 0.5, and **Crevice shading** to 2. **Height occlusion** depth goes to 1 and its strength to 4. **Normal** strength goes to 32, **Normal strength** to 16, **Baked specular** strength to 8, and **Diffuse**, **Specular**, and **Exposure** to 4. Saved graphs load unchanged.
+- Add 8 **Sci-fi** presets: Sci-fi panels, Hex armor, Metal compartments, Ribbed siding, Vent grille, Glowing tech panel, Grimy space panels, and Hazard plating. Each has crisp machined panels split into irregular sub-panels at stepped heights, with screws, vents, louvers, pipe trenches, and hazard and label decals. Deep relief and long cast shadows give them depth. Each is weathered: fine grain, micro-scratches, worn edges, and dirt in the cavities. Bare metal carries baked highlights. In the FDV material, the environment reflects only through irregular alpha holes (Alpha holes: Reflect): chipped edges, scratches, bolts, and rubbed-clean blotches. It never covers whole plates. LED strips and indicators glow with a slight bloom.
+- Add 8 **Stylized** toon presets: Toon brick, Toon cobblestone, Toon stone wall, Toon planks, Toon grass, Toon sand, Toon dirt, and Toon tiles. They are painted in the hand-painted game style: light comes from above with cool, saturated shadows and warm highlights, raised edges get a warm rim, and cavities turn deep and colored.
+- Add the **Tyre marks** preset under **Terrain**. Two passes of rally tyres press ruts into a sampled preset, Snow by default. Choose the same preset in both base sample nodes to put the marks on Gravel, Mud, Sand or any other static preset. Each tyre stamps staggered tread blocks into the rut floor and pushes up soft lips. The base surface's own grain breaks the stamp and roughens the rut edges, so gravel looks gritty and snow stays crisp. Pinned controls set wheel spacing, tyre width, wander, track direction, rut and tread depth, grit and mark visibility. The marks tile seamlessly.
+- **Pulsing glow** defaults to **Blended** surface alpha, so its soft halo fades smoothly. It used Cutout, which cut the halo into hard holes.
 
 ### Export
 
-- FDV materials and sprite sheets can also write an OBJ/MTL preview quad.
-- FDV material export refuses DTEX textures that are uncompressed and mipmapped, because FDV Engine on Dreamcast cannot load them. Buttons next to the message fix the settings.
-- **Use in Texture Converter** on an animated graph sends the current frame. Playback keeps running afterwards.
+- Optionally write an OBJ/MTL preview quad with FDV materials and sprite sheets, for FDV Editor, Blender, and web viewers.
+- Refuse FDV material DTEX that is uncompressed and mipmapped. FDV Engine on Dreamcast cannot load it. Correction buttons enable VQ compression or disable mipmaps.
 
 ### Documentation
 
-- New file format reference for FDV materials, Dreamcast textures, and sprite sheet metadata.
-- All screenshots are new. The user guide has new sections for the workspace, layouts, colors, graph maps, and the shader status.
-
-### Updating
-
-Close Texture Studio before updating. You don't need to uninstall the old version first.<br>
-For the portable ZIP, extract it into a new folder. Keep your own graphs and images from the old folder.
-
-Graphs from older versions open in 0.3.0.<br>
-Graphs with more than 64 nodes, such as the new Sci-fi presets, need 0.3.0 or newer.<br>
-Each graph compiles its shaders once the first time you open it after the update.
+- Add a file format reference for FDV materials, Dreamcast textures, and sprite sheet metadata, so other engines can read Studio exports.
+- Refresh every user guide screenshot and the animated node graph for the 0.3.0 interface, and add screenshots of Focus graph, the color picker, and **Use this node as**.
+- Add user guide sections for the workspace and saved layouts, colors, graph maps, and the shader status. Add the new Sci-fi and Stylized presets to the README.
 
 ## 0.2.0
 
